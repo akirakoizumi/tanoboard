@@ -1,23 +1,39 @@
-# コピペでOK, app_nameもそのままでOK
-# 19.01.20現在最新安定版のイメージを取得
 FROM ruby:2.5.3
 
-# 必要なパッケージのインストール（基本的に必要になってくるものだと思うので削らないこと）
-RUN apt-get update -qq && \
-    apt-get install -y build-essential \ 
-                       libpq-dev \        
-                       nodejs           
+ENV ENTRYKIT_VERSION 0.4.0
 
 # 作業ディレクトリの作成、設定
 RUN mkdir /tanoboard 
-##作業ディレクトリ名をAPP_ROOTに割り当てて、以下$APP_ROOTで参照
+
 ENV APP_ROOT /tanoboard 
 WORKDIR $APP_ROOT
 
-# ホスト側（ローカル）のGemfileを追加する（ローカルのGemfileは【３】で作成）
+RUN apt-get update                                                                                                                      \
+  && apt-get install                                                                                                                    \
+    openssl                                                                                                                             \
+  && wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERSION}/entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz     \
+  && tar -xvzf entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz                                                                            \
+  && rm entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz                                                                                   \
+  && mv entrykit /bin/entrykit                                                                                                          \
+  && chmod +x /bin/entrykit                                                                                                             \
+  && entrykit --symlink \
+  && apt-get update -qq  \
+  && apt-get install -y build-essential \ 
+                       libpq-dev \  
+  && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+  && apt-get install -y nodejs
+
 ADD ./Gemfile $APP_ROOT/Gemfile
 ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 
 # Gemfileのbundle install
-RUN bundle install
+#RUN bundle install
 ADD . $APP_ROOT
+
+ENTRYPOINT [ \
+  "prehook", "bundle install", "--", \
+  "prehook", "rails db:create", "--", \
+  "prehook", "rails db:migrate", "--", \
+  "prehook", "bin/rspec", "--", \
+  "prehook", "ruby -v", "--" \
+  ]
