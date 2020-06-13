@@ -42,6 +42,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'spring-commands-rspec'
+  gem 'rubocop', require: false
+  gem 'rubocop-airbnb'
 end
 
 group :development do
