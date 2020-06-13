@@ -13,9 +13,10 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: password # docker-compose.ymlのMYSQL_ROOT_PASSWORD
-  host: db # docker-compose.ymlのservice名
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['MYSQL_ROOT_USER'] || 'root' %> 
+  password: <%= ENV['MYSQL_ROOT_PASSWORD'] || 'password' %> # docker-compose.ymlのMYSQL_ROOT_PASSWORD
+  host: db 
 
 development:
   <<: *default
@@ -27,6 +28,7 @@ development:
 test:
   <<: *default
   database: tanoboard_test
+  host: <%= ENV['MYSQL_ROOT_HOST'] || 'db' %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
