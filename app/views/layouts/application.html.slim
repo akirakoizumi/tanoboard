@@ -1,11 +1,28 @@
 doctype html
 html
   head
-    title
-      | AppName
+    title= full_title(yield(:title))
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = yield
+    header
+      nav.navbar.navbar-expand-md.navbar-dark.bg-dark.sticky-top
+        .container
+          .app-title.navbar#logo
+            = link_to "Tanoboard", root_path, class: 'navbar-brand'
+          ul.navbar-nav.navbar-right
+            /- if logged_in?
+            li.nav-item= link_to "Settings", '#' ,class: 'nav-link'
+            li.nav-item= link_to "Index", '#' ,class: 'nav-link'
+            li.nav-item= link_to "Show", '#' ,class: 'nav-link'
+
+    .container
+      = yield
+    footer
+      nav.navbar.navbar-expand-md.navbar-light.border-top.border-secondary
+          .container
+            .app-title.navbar#logo
+              = link_to "Tanoboard", root_path, class: 'navbar-brand'
+              
