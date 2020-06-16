@@ -8,13 +8,13 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     header
-      nav.navbar.navbar-expand-md.navbar-dark.bg-dark.sticky-top
+      nav.navbar.navbar-expand-md.navbar-dark.bg-dark.sticky-top.mb-3
         .container
           .app-title.navbar#logo
             = link_to "Tanoboard", root_path, class: 'navbar-brand'
           ul.navbar-nav.navbar-right
             /- if logged_in?
-            li.nav-item= link_to "Settings", '#' ,class: 'nav-link'
+            li.nav-item= link_to "アカウント登録", signup_path ,class: 'nav-link'
             li.nav-item= link_to "Index", '#' ,class: 'nav-link'
             li.nav-item= link_to "Show", '#' ,class: 'nav-link'
 
