@@ -1,13 +1,12 @@
 # require 'rails_helper'
 #
-# RSpec.describe "Tasks", type: :request do
+# RSpec.describe "Users", type: :request do
 #
-#  describe "GET /index" do
+#  describe "GET /new" do
 #    it "returns http success" do
-#      get "/tasks/index"
+#      get "/users/new"
 #      expect(response).to have_http_status(:success)
 #    end
 #  end
 #
 # end
-#
