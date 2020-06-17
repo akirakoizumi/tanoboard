@@ -1,11 +1,11 @@
-- provide(:title, 'アカウント作成')
+- provide(:title, 'ユーザーの編集')
 
 .container.mb-3
   .row.align-items-center
     .sidenav.col-md-4.col-sm-12
       .login-main-text.text-center
-        h2.display-4 新規登録
-        p 空欄に記入してください
+        h2.display-4 ユーザーの編集
+        p 変更内容を記入してください
     .main.col-md-6.col-sm-12
-      .login-form
+      .edit-form
         = render partial: 'form', locals: { user: @user } 
