@@ -7,7 +7,11 @@ ja:
         id: ID
         name: 名前
         email: email
-        password: パスワード(6文字以上)
+        password: パスワード
         password_confirmation: パスワード（確認）
         created_at: 登録日時
         updated_at: 更新日時
+      group:
+        id: グループID
+        name: 名前
+        description: グループ説明
