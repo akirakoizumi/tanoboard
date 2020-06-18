@@ -15,10 +15,13 @@ html
           ul.navbar-nav.navbar-right
             /- if logged_in?
             li.nav-item= link_to "アカウント登録", signup_path ,class: 'nav-link'
+            li.nav-item= link_to "ログイン", login_path ,class: 'nav-link'
             li.nav-item= link_to "ユーザー一覧", users_path ,class: 'nav-link'
-            li.nav-item= link_to "ユーザー詳細", '#' ,class: 'nav-link'
+            li.nav-item= link_to "ユーザー詳細", current_user ,class: 'nav-link'
 
     .container
+      - if flash.notice.present?
+        .alert.alert-success= flash.notice
       = yield
       /デバッグ用
       = debug(params) if Rails.env.development?
