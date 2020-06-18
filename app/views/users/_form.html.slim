@@ -1,14 +1,15 @@
 = form_with model: @user, local: true do |f|
+  = render 'shared/error_messages', object: f.object
   .form-group
     = f.label :name
-    = f.text_field :name, class: 'form-control', id: 'user_name'
+    = f.text_field :name, class: 'form-control', id: 'user_name' ,autofocus: "autofocus", required: true
   .form-group
     = f.label :email
-    = f.text_field :email, class: 'form-control', id: 'user_email'
+    = f.text_field :email, class: 'form-control', id: 'user_email', required: true
   .form-group
     = f.label :password
-    = f.password_field :password, class: 'form-control', id: 'user_password'
+    = f.password_field :password, class: 'form-control', id: 'user_password', required: true
   .form-group
     = f.label :password_confirmation
-    = f.password_field :password_confirmation, class: 'form-control', id: 'user_password_confirmation'
+    = f.password_field :password_confirmation, class: 'form-control', id: 'user_password_confirmation', required: true
   = f.submit nil, class: 'btn btn-primary col-4 mb-5'
