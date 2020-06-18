@@ -23,6 +23,40 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def edit_password
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = 'アカウント情報を編集しました。'
+      redirect_to @user
+    else
+      render edit_user_path @user
+    end
+  end
+
+  def update_password
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params_password_only)
+      flash[:success] = 'パスワードを変更しました。'
+      redirect_to @user
+    else
+      render edit_password_user_path
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to user_url, notice: "ユーザー「#{@user.name}」を削除しました"
+  end
+
   private
 
   def user_params

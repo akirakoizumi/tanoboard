@@ -6,7 +6,7 @@ ja:
       user:
         id: ID
         name: 名前
-        email: メールアドレス
+        email: email
         password: パスワード
         password_confirmation: パスワード（確認）
         created_at: 登録日時
