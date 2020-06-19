@@ -1,0 +1,8 @@
+h1 Group show.html.slim
+h2 メンバー一覧
+p =@group.description
+
+ul.groups
+  - @group.users.each do |user|
+    li
+      = link_to user.name, user

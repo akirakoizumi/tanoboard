@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :groups, only: [:new, :create]
+  resources :groups, only: [:index, :show, :new, :create]
 
   # get 'tasks/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
