@@ -3,10 +3,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: session_params[:email])
-
+    user = User.find_by(email: session_params[:email].downcase)
     if user&.authenticate(session_params[:password])
-      session[:user_id] = user.id
+      log_in user
       redirect_to user_path(user.id), notice: 'ログインしました。'
     else
       render :new
@@ -14,7 +13,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    reset_session
+    log_out
+    @current_user = nil
     redirect_to root_url, notice: 'ログアウトしました。'
   end
 

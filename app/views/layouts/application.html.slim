@@ -13,7 +13,7 @@ html
           .app-title.navbar#logo
             = link_to "Tanoboard", root_path, class: 'navbar-brand'
           ul.navbar-nav.navbar-right
-            - if current_user              
+            - if logged_in?              
               li.nav-item= link_to "ユーザー一覧", users_path ,class: 'nav-link'
               li.nav-item= link_to "グループ一覧", groups_path ,class: 'nav-link'
               li.nav-item= link_to "グループ作成", new_group_path ,class: 'nav-link'
