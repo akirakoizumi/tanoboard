@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_183446) do
+ActiveRecord::Schema.define(version: 2020_06_20_195727) do
   create_table "group_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "group_id", null: false
     t.bigint "user_id", null: false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_06_20_183446) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false, null: false
+    t.string "remember_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
