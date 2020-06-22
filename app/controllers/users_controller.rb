@@ -15,10 +15,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
-      redirect_to user_url(@user), notice: "ユーザー「#{@user.name}」を登録しました"
-      # flash[:success] = 'ユーザー登録が完了しました。'
-      # log_in(@user)
-      # redirect_to @user
+      flash[:success] = "ユーザー「#{@user.name}」を登録しました"
+      redirect_to user_url(@user)
     else
       render :new
     end
@@ -34,28 +32,31 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.update_attributes(user_params)
       flash[:success] = 'アカウント情報を編集しました。'
       redirect_to @user
     else
-      render edit_user_path @user
+      render 'edit'
     end
   end
 
   def update_password
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params_password_only)
+    if @user.update_attributes(user_params)
+      # if @user.valid?(:registration)
+      # @user.update(user_params)
       flash[:success] = 'パスワードを変更しました。'
       redirect_to @user
     else
-      render edit_password_user_path
+      render 'edit_password'
     end
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to user_url, notice: "ユーザー「#{@user.name}」を削除しました"
+    flash[:success] = "ユーザー「#{@user.name}」を削除しました"
+    redirect_to user_url
   end
 
   private
@@ -64,9 +65,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  # 正しいユーザーかどうか確認
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
+  def user_params2
+    params.require(:user).permit(:name, :email)
   end
 end
