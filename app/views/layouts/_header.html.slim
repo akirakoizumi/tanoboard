@@ -1,9 +1,9 @@
 header
-  nav.navbar.navbar-expand-md.navbar-dark.bg-dark.sticky-top.mb-3
+  nav.navbar.navbar-expand-md.navbar-dark.bg-dark.sticky-top
     .container
       .app-title.navbar#logo
         = link_to "Tanoboard", root_path, class: 'navbar-brand'
-      ul.navbar-nav.navbar-right
+      ul.navbar-nav
         - if logged_in?              
           li.nav-item= link_to "ユーザー一覧", users_path ,class: 'nav-link'
           li.nav-item= link_to "グループ一覧", groups_path ,class: 'nav-link'
@@ -13,3 +13,10 @@ header
         - else
           li.nav-item= link_to "管理ユーザー登録", signup_path ,class: 'nav-link'
           li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+  - if logged_in? 
+    nav.navbar.navbar-expand-md.bg-teal.sticky-top.mb-3.py-2
+      .container.justify-content-end
+        span.nav-item.text-light.ml-4= current_user.name
+        span.nav-item.text-light.ml-4= current_user.email
+  - else
+    .mb-3
