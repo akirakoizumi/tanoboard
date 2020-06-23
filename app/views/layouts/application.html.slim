@@ -7,22 +7,7 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    header
-      nav.navbar.navbar-expand-md.navbar-dark.bg-dark.sticky-top.mb-3
-        .container
-          .app-title.navbar#logo
-            = link_to "Tanoboard", root_path, class: 'navbar-brand'
-          ul.navbar-nav.navbar-right
-            - if logged_in?              
-              li.nav-item= link_to "ユーザー一覧", users_path ,class: 'nav-link'
-              li.nav-item= link_to "グループ一覧", groups_path ,class: 'nav-link'
-              li.nav-item= link_to "グループ作成", new_group_path ,class: 'nav-link'
-              li.nav-item= link_to "ユーザー詳細", current_user ,class: 'nav-link'
-              li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
-            - else
-              li.nav-item= link_to "管理ユーザー登録", signup_path ,class: 'nav-link'
-              li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
-
+    = render 'layouts/footer' 
     .container
       - flash.each do |message_type, message|
         = content_tag(:div, message, class: "alert alert-#{message_type}")
