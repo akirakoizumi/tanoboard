@@ -43,8 +43,6 @@ class UsersController < ApplicationController
   def update_password
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      # if @user.valid?(:registration)
-      # @user.update(user_params)
       flash[:success] = 'パスワードを変更しました。'
       redirect_to @user
     else
@@ -62,10 +60,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def user_params2
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 end

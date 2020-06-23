@@ -9,9 +9,10 @@ ja:
         email: email
         password: パスワード
         password_confirmation: パスワード（確認）
+        admin: 管理権
         created_at: 登録日時
         updated_at: 更新日時
       group:
         id: グループID
         name: 名前
-        description: グループ説明
+        description: グループ説明        
