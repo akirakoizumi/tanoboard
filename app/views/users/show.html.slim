@@ -1,6 +1,20 @@
 - provide(:title, 'ユーザーの詳細')
 
 .container.mb-3
+  ul.groups
+  - @user.groups.each do |group|
+    li
+      = link_to group.name, group
+      - group.users.each do |user|
+        li
+          = link_to user.name, user
+  p ユーザーを削除する
+  = link_to '削除', @user, method: :delete, data: {confirm: "ユーザー「#{@user.name}」を削除します。よろしいですか？"},
+    class: 'btn btn-danger'
+      
+.border-bottom.border-dark
+
+.container.mb-3
   .row.align-items-center
     .sidenav.col-md-4.col-sm-12
       .sidenav-text.text-center
