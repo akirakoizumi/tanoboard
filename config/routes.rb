@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     member do
       get :edit_password
       patch :update_password
+      get :new_sub
+      post :create_sub
     end
   end
 
