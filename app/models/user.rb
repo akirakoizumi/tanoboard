@@ -4,12 +4,13 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, on: :update, allow_blank: true
   validates :password_confirmation, presence: true, on: :create
   validates :password_confirmation, presence: true, on: :update, allow_blank: true
-  before_save { self.email = email.downcase }
+  before_save { self.email = email.downcase unless email.nil? }
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
   validates :email, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+                    uniqueness: { case_sensitive: false },
+                    on: :create, allow_blank: true
 
   has_many :group_users, dependent: :destroy
   has_many :groups, through: :group_users
