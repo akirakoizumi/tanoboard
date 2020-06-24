@@ -11,14 +11,34 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def new_sub
+    @user = User.new
+    @group = Group.find(params[:id])
+  end
+
   def create
     @user = User.new(user_params)
-    if @user.save
+    @user.admin = true
+    if @user.save!
       log_in(@user)
       flash[:success] = "ユーザー「#{@user.name}」を登録しました"
       redirect_to user_url(@user)
     else
       render :new
+    end
+  end
+
+  def create_sub
+    @user = User.new(user_params)
+    @user.admin = false
+    if @user.save
+      group = Group.find(params[:user][:group_id])
+      group.users << @user
+      flash[:success] = "サブユーザー「#{@user.name}」を登録しました"
+      redirect_to group
+    else
+      flash[:danger] = '入力内容に誤りがあります。'
+      redirect_to new_sub_user_path
     end
   end
 
@@ -62,6 +82,10 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def sub_user_params
+    params.permit(:name, :password, :password_confirmation, :group_id)
   end
 end

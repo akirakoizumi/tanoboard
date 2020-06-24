@@ -1,8 +1,13 @@
-h1 Group show.html.slim
-h2 メンバー一覧
-p =@group.description
+.container
+  h2 メンバー一覧
+  p =@group.description
 
-ul.groups
-  - @group.users.each do |user|
-    li
-      = link_to user.name, user
+  ul.groups
+    - @group.users.each do |user|
+      li
+        = link_to user.name, user
+
+.border-bottom.border-dark.mb-3
+
+.container.mb-3
+  = link_to "グループメンバーを作成する", new_sub_user_path, class: "btn btn-primary mr-3"
