@@ -11,6 +11,10 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false },
                     on: :create, allow_blank: true
+  validates :email, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false },
+                    on: :update
 
   has_many :group_users, dependent: :destroy
   has_many :groups, through: :group_users

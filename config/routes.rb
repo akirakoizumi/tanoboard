@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root to: 'tasks#index'
   resources :users do
     member do
+      get :name_edit
+      patch :update_name
       get :edit_password
       patch :update_password
       get :new_sub

@@ -1,0 +1,16 @@
+- provide(:title, '名前変更')
+
+.container.mb-3
+  .row.align-items-center
+    .sidenav.col-md-4.col-sm-12
+      .sidenav-text.text-center
+        h1 名前変更
+        p 新しいな名前を入力してください
+    .main.col-md-6.col-sm-12.mt-3
+      .edit-form
+        = form_with model: @user, method: :patch ,url: update_name_user_path, local: true do |f|
+          = render 'shared/error_messages', object: f.object
+          .form-group
+            = f.label :name
+            = f.text_field :name, class: 'form-control', id: 'user_name', autofocus: "autofocus", required: true
+          = f.submit nil, class: 'btn btn-primary col-4 mb-5'

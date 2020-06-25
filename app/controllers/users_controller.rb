@@ -44,6 +44,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    redirect_to name_edit_user_path unless @user.admin?
+  end
+
+  def name_edit
+    @user = User.find(params[:id])
+    redirect_to edit_user_path if @user.admin?
   end
 
   def edit_password
@@ -57,6 +63,16 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'edit'
+    end
+  end
+
+  def update_name
+    @user = User.find(params[:id])
+    if @user.update_attribute(:name, params[:user][:name])
+      flash[:success] = '名前を変更しました。'
+      redirect_to @user
+    else
+      render 'name_edit'
     end
   end
 
