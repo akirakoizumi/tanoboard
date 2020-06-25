@@ -3,7 +3,7 @@
 .container.mb-3
   ul.groups
   - @user.groups.each do |group|
-      h4= link_to group.name, group ,class: 'text-body'
+      h4.mt-3= link_to group.name, group ,class: 'text-body'
       - group.users.each do |user|
         li
           = link_to user.name, user
