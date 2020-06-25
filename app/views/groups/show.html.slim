@@ -10,4 +10,8 @@
 .border-bottom.border-dark.mb-3
 
 .container.mb-3
-  = link_to "グループメンバーを作成する", new_sub_user_path, class: "btn btn-primary mr-3"
+  -if admin?
+    = link_to "グループメンバーを作成する", new_sub_user_path, class: "btn btn-primary mr-3"
+    = link_to "グループ情報編集", edit_group_path, class: "btn btn-primary mr-3"
+  - else 
+    p 管理権なし
