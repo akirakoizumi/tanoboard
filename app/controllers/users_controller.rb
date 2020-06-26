@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.admin = false
     if @user.save
-      group = Group.find(params[:user][:group_id])
+      group = Group.find(params[:id])
       group.users << @user
       flash[:success] = "サブユーザー「#{@user.name}」を登録しました"
       redirect_to group
