@@ -1,12 +1,16 @@
 - provide(:title, 'ユーザーの詳細')
 
 .container.mb-3
-  ul.groups
-  - @user.groups.each do |group|
-      h4.mt-3= link_to group.name, group ,class: 'text-body'
-      - group.users.each do |user|
-        li
-          = link_to user.name, user
+  -if @user.groups.empty?
+    p グループに所属していません
+    = link_to '新しいグループを作成する',new_group_path, class: "btn btn-primary mr-3"
+  -else
+    ul.groups
+    - @user.groups.each do |group|
+        h4.mt-3= link_to group.name, group ,class: 'text-body'
+        - group.users.each do |user|
+          li
+            = link_to user.name, user
 
 .border-bottom.border-dark
 
@@ -35,7 +39,7 @@
         - if @user.admin?
           = link_to "ユーザー情報編集", edit_user_path, class: "btn btn-primary mr-3"
         - else
-          = link_to "名前変更", name_edit_user_path, class: "btn btn-primary mr-3"          
+          = link_to "名前変更", name_edit_user_path, class: "btn btn-primary mr-3"
         = link_to "パスワード変更", edit_password_user_path, class: "btn btn-primary mr-3"
         = link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary mr-3"
         = link_to '削除', @user, method: :delete, data: {confirm: "ユーザー「#{@user.name}」を削除します。よろしいですか？"},
