@@ -6,6 +6,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @users = @group.users.all
+    group_in(@group)
   end
 
   def new
