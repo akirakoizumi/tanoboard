@@ -14,4 +14,10 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def current_group
+    if session[:group_id]
+      @current_group ||= Group.find_by(id: session[:group_id])
+    end
+  end
 end
