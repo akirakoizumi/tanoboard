@@ -98,10 +98,10 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :default_group_id)
   end
 
   def sub_user_params
-    params.permit(:name, :password, :password_confirmation, :group_id)
+    params.permit(:name, :password, :password_confirmation, :group_id, :default_group_id)
   end
 end

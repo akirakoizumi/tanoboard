@@ -8,6 +8,20 @@
         = link_to user.name, user
 
 .border-bottom.border-dark.mb-3
+="session[:group_id] = #{session[:group_id]}"
+br
+="session[:user_id] = #{session[:user_id]}"
+
+.border-bottom.border-dark.mb-3
+.container.mb-3
+  #success-message
+  -if admin? && current_user.default_group_id != session[:group_id]
+    = link_to 'デフォルトのグループに設定する', set_defaultuser_group_path, method: :post,
+      remote: true, data: {confirm: '設定しますか'}, class: 'btn btn-primary'  
+  - else
+    p ="「#{@group.name}」はデフォルトグループに設定されています。"
+
+.border-bottom.border-dark.my-3
 
 .container.mb-3
   -if admin?

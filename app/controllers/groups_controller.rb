@@ -39,9 +39,26 @@ class GroupsController < ApplicationController
     end
   end
 
+  # デフォルトグループをセット
+  def set_defaultuser
+    if admin?
+      @group = Group.find(params[:id])
+      if @group.present?
+        current_user.default_group_id = @group.id
+        current_user.save!
+        flash[:success] = "#{@group.name} をデフォルトグループに設定しました"
+        flash.discard
+      end
+    end
+  end
+
   private
 
   def group_params
     params.require(:group).permit(:name, :description, { user_ids: [] })
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :default_group_id)
   end
 end
