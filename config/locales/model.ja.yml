@@ -15,4 +15,10 @@ ja:
       group:
         id: グループID
         name: 名前
-        description: グループ説明        
+        description: グループ説明
+      task:
+        id: ID
+        name: タスク名
+        description: 詳細
+        created_at: 登録日時
+        update_at: 更新日時
