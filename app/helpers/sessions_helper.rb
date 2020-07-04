@@ -1,10 +1,10 @@
 module SessionsHelper
   # ログインする
-  # サブユーザーならグループに入れる
+  # デフォルトグループidが設定されていたらsessionを登録する
   def log_in(user)
     session[:user_id] = user.id
-    if !user.admin
-      group_in(user.groups.first)
+    if user.default_group_id
+      group_in(Group.find(user.default_group_id))
     end
   end
 
@@ -42,7 +42,7 @@ module SessionsHelper
     current_user.groups.include?(group)
   end
 
-  # グループ情報を保存する
+  # グループセッション情報を保存する
   def group_in(group)
     if current_user_belongs_to?(group)
       session[:group_id] = group.id

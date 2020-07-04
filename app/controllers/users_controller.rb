@@ -30,10 +30,12 @@ class UsersController < ApplicationController
 
   def create_sub
     @user = User.new(user_params)
+    @group = Group.find(params[:id])
     @user.admin = false
+    @user.default_group_id = @group.id
     if @user.save
-      group = Group.find(params[:id])
-      group.users << @user
+      @group = Group.find(params[:id])
+      @group.users << @user
       flash[:success] = "サブユーザー「#{@user.name}」を登録しました"
       redirect_to group
     else
