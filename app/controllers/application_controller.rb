@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
   helper_method :current_user
+  helper_method :current_group
 
   private
 
@@ -18,6 +19,9 @@ class ApplicationController < ActionController::Base
   def current_group
     if session[:group_id]
       @current_group ||= Group.find_by(id: session[:group_id])
+    elsif current_user.default_group_id
+      @current_group ||= Group.find_by(id: current_user.default_group_id)
+      session[:group_id] = current_user.default_group_id
     end
   end
 end
