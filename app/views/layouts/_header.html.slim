@@ -17,6 +17,7 @@ header
   - if logged_in? 
     nav.navbar.navbar-expand-md.bg-teal.sticky-top.mb-3.py-2
       .container.justify-content-end
+        span.nav-item.text-light.ml-4= current_group.name
         span.nav-item.text-light.ml-4= "ID: #{current_user.id}"
         span.nav-item.text-light.ml-4= current_user.name
         span.nav-item.text-light.ml-4= current_user.email
