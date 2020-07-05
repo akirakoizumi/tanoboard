@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       @group = Group.find(params[:id])
       @group.users << @user
       flash[:success] = "サブユーザー「#{@user.name}」を登録しました"
-      redirect_to group
+      redirect_to group_path
     else
       flash[:danger] = '入力内容に誤りがあります。'
       redirect_to new_sub_user_path
