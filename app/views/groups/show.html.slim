@@ -1,6 +1,5 @@
 .container
   h2 メンバー一覧
-  p =@group.description
 
   ul.groups
     - @group.users.each do |user|
@@ -13,6 +12,8 @@ br
 ="session[:user_id] = #{session[:user_id]}"
 
 .border-bottom.border-dark.mb-3
+= render 'task_form', task: @task
+.border-bottom.border-dark.my-3
 .container.mb-3
   #success-message
   -if admin? && current_user.default_group_id != session[:group_id]
