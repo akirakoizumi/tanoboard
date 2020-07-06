@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'tasks#index'
-  resources :tasks
+  resources :tasks do
+    resource :reactions, only: [:create, :destroy]
+  end
 
   resources :users do
     member do
