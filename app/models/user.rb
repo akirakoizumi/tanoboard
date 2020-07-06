@@ -47,4 +47,9 @@ class User < ApplicationRecord
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
+
+  # 自分が所属するグループか？
+  def belongs_to?(group)
+    groups.include?(group)
+  end
 end

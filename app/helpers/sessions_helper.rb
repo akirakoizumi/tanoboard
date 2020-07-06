@@ -38,13 +38,13 @@ module SessionsHelper
   end
 
   # 自分が所属するグループか？
-  def current_user_belongs_to?(group)
-    current_user.groups.include?(group)
-  end
+  # def current_user_belongs_to?(group)
+  #  current_user.groups.include?(group)
+  # end
 
   # グループセッション情報を保存する
   def group_in(group)
-    if current_user_belongs_to?(group)
+    if current_user.belongs_to?(group)
       session[:group_id] = group.id
     else
       session.delete(:group_id)
