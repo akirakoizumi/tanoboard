@@ -7,12 +7,13 @@
         = link_to user.name, user
 
 .border-bottom.border-dark.mb-3
-="session[:group_id] = #{session[:group_id]}"
-br
-="session[:user_id] = #{session[:user_id]}"
+
+= render 'task_list', task: @tasks
 
 .border-bottom.border-dark.mb-3
+
 = render 'task_form', task: @task
+
 .border-bottom.border-dark.my-3
 .container.mb-3
   #success-message

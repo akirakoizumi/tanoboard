@@ -1,5 +1,5 @@
 = form_with model: task, local: true do |f|
-.form-group
+  .form-group
     = f.label :content
     = f.text_area :content, rows: 5, class: 'form-control', id: 'task_content'
   = f.hidden_field :group_id, value: current_group.id
