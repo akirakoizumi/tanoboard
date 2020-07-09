@@ -9,6 +9,6 @@ class Task < ApplicationRecord
   scope :recent, -> { order(created_at: :desc) }
 
   def reacted_by?(user)
-    where(user_id: user.id).exists?
+    reaction.where(user_id: user.id).exists?
   end
 end
