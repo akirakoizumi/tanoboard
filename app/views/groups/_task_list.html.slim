@@ -1,21 +1,14 @@
 table.table.table-hover
-  thead.thead-default
-    tr
-      th= Task.human_attribute_name(:content)
-      th= Task.human_attribute_name(:created_at)
-      th= '編集&削除'
-      th= '了解数'
-      th= 'ボタン'
   tbody
     - @tasks.each do |task|
       tr id="task-#{task.id}"
         td= link_to task.content, task
         td= task.created_at.strftime('%Y/%m/%d %H:%M')
         td
-          = link_to '編集', edit_task_path(task), class: 'btn btn-primary btn-sm mr-3'
           = link_to '削除', task, method: :delete, remote: true, data: { confirm: "タスクを削除します。よろしいですか？"},
-                    class: 'btn btn-danger btn-sm delete'
+                    class: 'btn btn-outline-danger btn-sm delete'
         td id="task_count_id_#{task.id}"
-          = render partial: 'task_count', locals: { task: task}
+          = render partial: 'tasks/task_count', locals: { task: task}
         td id="task_confirmation_id_#{task.id}"
-          = render partial: 'task_confirmation', locals: { task: task}
+          = render partial: 'tasks/task_confirmation', locals: { task: task}
+
