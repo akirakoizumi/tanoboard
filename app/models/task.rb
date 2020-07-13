@@ -12,7 +12,7 @@ class Task < ApplicationRecord
     reaction.where(user_id: user.id).exists?
   end
 
-  def all_reaction_user_id
-    Reaction.where(task_id: id).pluck('user_id')
+  def all_reaction_user
+    User.find(Reaction.where(task_id: id).pluck('user_id'))
   end
 end
