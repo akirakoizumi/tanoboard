@@ -2,6 +2,11 @@ class TasksController < ApplicationController
   def index
   end
 
+  def show
+    @task = Task.find(params[:id])
+    @users = @task.all_reaction_user
+  end
+
   def new
   end
 
@@ -14,6 +19,13 @@ class TasksController < ApplicationController
       flash[:danger] = '登録に失敗しました。'
       redirect_to group_path(session[:group_id])
     end
+  end
+
+  def destroy
+    task = Task.find(params[:id])
+    task.destroy!
+    flash[:success] = 'タスクを削除しました。'
+    redirect_to group_path(session[:group_id])
   end
 
   private
