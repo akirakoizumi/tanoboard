@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @tasks = Task.all
+    @tasks = Task.where(group_id: params[:id]).includes(:user).order('created_at DESC')
     @task = Task.new
     group_in(@group)
   end

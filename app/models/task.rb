@@ -8,6 +8,10 @@ class Task < ApplicationRecord
 
   scope :recent, -> { order(created_at: :desc) }
 
+  def creator
+    User.find(user_id)
+  end
+
   def reacted_by?(user)
     reaction.where(user_id: user.id).exists?
   end

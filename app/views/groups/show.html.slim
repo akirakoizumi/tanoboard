@@ -6,28 +6,28 @@
       li
         = link_to user.name, user
 
-.border-bottom.border-dark
+  .border-bottom.border-dark
 
-= render 'task_list', task: @tasks
+  = render 'task_list', task: @tasks
 
-.border-bottom.border-dark.mb-3
+  .border-bottom.border-dark.mb-3
 
-= render 'task_form', task: @task
-
-.border-bottom.border-dark.my-3
-.container.mb-3
-  #success-message
-  -if admin? && current_user.default_group_id != session[:group_id]
-    = link_to 'デフォルトのグループに設定する', set_defaultuser_group_path, method: :post,
-      remote: true, data: {confirm: '設定しますか'}, class: 'btn btn-primary'  
-  - else
-    p ="「#{@group.name}」はデフォルトグループに設定されています。"
-
-.border-bottom.border-dark.my-3
-
-.container.mb-3
-  -if admin?
-    = link_to "グループメンバーを作成する", new_sub_user_path, class: "btn btn-primary mr-3"
-    = link_to "グループ情報編集", edit_group_path, class: "btn btn-primary mr-3"
-  - else 
-    p 管理権なし
+    = render 'task_form', task: @task
+  
+  .border-bottom.border-dark.my-3
+  .container.mb-3
+    #success-message
+    -if admin? && current_user.default_group_id != session[:group_id]
+      = link_to 'デフォルトのグループに設定する', set_defaultuser_group_path, method: :post,
+        remote: true, data: {confirm: '設定しますか'}, class: 'btn btn-primary'  
+    - else
+      p ="「#{@group.name}」はデフォルトグループに設定されています。"
+  
+  .border-bottom.border-dark.my-3
+  
+  .container.mb-3
+    -if admin?
+      = link_to "グループメンバーを作成する", new_sub_user_path, class: "btn btn-primary mr-3"
+      = link_to "グループ情報編集", edit_group_path, class: "btn btn-primary mr-3"
+    - else 
+      p 管理権なし

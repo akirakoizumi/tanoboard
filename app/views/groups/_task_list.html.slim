@@ -1,14 +1,21 @@
-table.table.table-hover
-  tbody
-    - @tasks.each do |task|
-      tr id="task-#{task.id}"
-        td= link_to task.content, task
-        td= task.created_at.strftime('%Y/%m/%d %H:%M')
-        td
-          = link_to '削除', task, method: :delete, remote: true, data: { confirm: "タスクを削除します。よろしいですか？"},
-                    class: 'btn btn-outline-danger btn-sm delete'
-        td id="task_count_id_#{task.id}"
-          = render partial: 'tasks/task_count', locals: { task: task}
-        td id="task_confirmation_id_#{task.id}"
-          = render partial: 'tasks/task_confirmation', locals: { task: task}
-
+.row
+  - @tasks.each do |task|
+    .col-md-4.col-sm-12
+      .card.my-3
+        .card-header
+          p.card-text = task.creator.name
+          /
+        .card-body
+          h5.card-title =link_to task.content, task
+          
+          p.card-text = task.created_at.strftime('%Y/%m/%d %H:%M')
+          
+          span 確認数
+          span.mr-3  id="task_count_id_#{task.id}"
+            = render partial: 'tasks/task_count', locals: { task: task}
+          
+          span id="task_confirmation_id_#{task.id}"
+            = render partial: 'tasks/task_confirmation', locals: { task: task}
+          .float-right
+            = link_to '削除', task, method: :delete, remote: true, data: { confirm: "タスクを削除します。よろしいですか？"},
+                    class: 'btn btn-outline-danger btn-sm delete text-right'
