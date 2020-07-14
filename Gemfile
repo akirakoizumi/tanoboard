@@ -81,3 +81,5 @@ gem 'jquery-rails'
 gem 'rails-i18n'
 
 gem 'kaminari'
+
+gem 'seed-fu'
