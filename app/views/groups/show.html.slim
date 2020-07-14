@@ -8,12 +8,16 @@
 
   .border-bottom.border-dark
 
+  .mb-3
+  = paginate @tasks
+  = page_entries_info @tasks
+
   = render 'task_list', task: @tasks
 
   .border-bottom.border-dark.mb-3
 
     = render 'task_form', task: @task
-  
+
   .border-bottom.border-dark.my-3
   .container.mb-3
     #success-message
@@ -22,9 +26,9 @@
         remote: true, data: {confirm: '設定しますか'}, class: 'btn btn-primary'  
     - else
       p ="「#{@group.name}」はデフォルトグループに設定されています。"
-  
+
   .border-bottom.border-dark.my-3
-  
+
   .container.mb-3
     -if admin?
       = link_to "グループメンバーを作成する", new_sub_user_path, class: "btn btn-primary mr-3"
