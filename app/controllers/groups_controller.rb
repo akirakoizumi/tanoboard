@@ -1,11 +1,13 @@
 class GroupsController < ApplicationController
+  PER = 2
+
   def index
     @groups = Group.all
   end
 
   def show
     @group = Group.find(params[:id])
-    @tasks = Task.where(group_id: params[:id]).includes(:user).order('created_at DESC')
+    @tasks = Task.where(group_id: params[:id]).includes(:user).recent.page(params[:page]).per(PER)
     @task = Task.new
     group_in(@group)
   end
