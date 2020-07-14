@@ -17,5 +17,4 @@ User.seed do |s|
   s.admin = true
   s.password = 'password'
   s.password_confirmation = 'password'
-  # s.group = Group.find_by(name: '長崎店')
 end
