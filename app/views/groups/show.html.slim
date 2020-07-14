@@ -1,6 +1,8 @@
 .container
-  h2 メンバー一覧
+  h1 =@group.name
+  h3 =@group.description
 
+  h4 メンバー一覧
   ul.groups
     - @group.users.each do |user|
       li
