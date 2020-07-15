@@ -11,10 +11,55 @@
 # end
 
 User.seed do |s|
-  s.id = 11
+  s.id = 1
   s.name = '濱川'
   s.email = 'hamakawa@example.com'
   s.admin = true
+  s.password = 'password'
+  s.password_confirmation = 'password'
+end
+
+User.seed do |s|
+  s.id = 2
+  s.name = '岩木'
+  s.email = 'iwaki@example.com'
+  s.admin = false
+  s.password = 'password'
+  s.password_confirmation = 'password'
+end
+
+User.seed do |s|
+  s.id = 3
+  s.name = '小野'
+  s.email = 'ono@example.com'
+  s.admin = false
+  s.password = 'password'
+  s.password_confirmation = 'password'
+end
+
+User.seed do |s|
+  s.id = 4
+  s.name = '若林'
+  s.email = 'wakabayasi@example.com'
+  s.admin = false
+  s.password = 'password'
+  s.password_confirmation = 'password'
+end
+
+User.seed do |s|
+  s.id = 11
+  s.name = '北原'
+  s.email = 'kitahara@example.com'
+  s.admin = true
+  s.password = 'password'
+  s.password_confirmation = 'password'
+end
+
+User.seed do |s|
+  s.id = 12
+  s.name = '青山'
+  s.email = 'aoyama@example.com'
+  s.admin = false
   s.password = 'password'
   s.password_confirmation = 'password'
 end

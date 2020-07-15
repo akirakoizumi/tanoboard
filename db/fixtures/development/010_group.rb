@@ -7,7 +7,13 @@
 # end
 
 Group.seed do |s|
-  s.id = 10
+  s.id = 1
   s.name = '長崎店'
   s.description = '明るく楽しい職場を作ろう！'
+end
+
+Group.seed do |s|
+  s.id = 2
+  s.name = '佐賀店'
+  s.description = '挨拶を大切に'
 end
