@@ -17,18 +17,18 @@
   end
 end
 
-Task.seed do |s|
-  s.id = 50
-  s.content = "濱川店長へレモンの買い出しをお願いします"
-  s.user_id = 2 # 岩木
-  s.group_id = 1 # 長崎店
-end
-
 30.times do |num|
   Task.seed do |s|
-    s.id = num # 50~80
+    s.id = num + 50 # 50~80
     s.content = "佐賀店の連絡 No.#{num} 連絡内容"
     s.user_id = 11 # 北原
     s.group_id = 2 # 佐賀店
   end
+end
+
+Task.seed do |s|
+  s.id = 81
+  s.content = "濱川店長へレモンの買い出しをお願いします"
+  s.user_id = 2 # 岩木
+  s.group_id = 1 # 長崎店
 end
