@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  PER = 2
+  PER = 12
 
   def index
     @groups = Group.all
