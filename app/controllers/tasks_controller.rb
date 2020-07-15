@@ -7,9 +7,6 @@ class TasksController < ApplicationController
     @users = @task.all_reaction_user
   end
 
-  def new
-  end
-
   def create
     @task = current_user.tasks.new(task_params)
     if @task.save
