@@ -1,6 +1,12 @@
-h1 Tasks#index
-h2 トップページ（仮）
-p Find me in app/views/tasks/index.html.erb
+h1.display-3 Tanoboardへようこそ！
+h3.mb-3
+  | Tanoboardは同じ職場で働く従業員同士のコミュニケーションを
+  br
+  | 快適に行うためのサービスです。
+
+= link_to '管理ユーザー登録', signup_path , class:'btn btn-primary btn-lg mr-4'
+= link_to 'ログイン', login_path , class:'btn btn-primary btn-lg'
+
 
 ul.groups
   - Group.all.each do |group|
