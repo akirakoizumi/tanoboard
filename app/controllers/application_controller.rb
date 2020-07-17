@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # ログイン済みユーザーかどうか確認
+  def logged_in_user
+    return if logged_in?
+
+    store_location
+    flash[:danger] = 'ログインしてください'
+    redirect_to login_url
+  end
+
   def current_user
     if session[:user_id]
       @current_user ||= User.find_by(id: session[:user_id])

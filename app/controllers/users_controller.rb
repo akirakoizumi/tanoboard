@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  # ログインしているユーザーか確認
+  before_action :logged_in_user, only: %i(
+    index show edit name_edit edit_password upload
+    update_name update_password destroy
+  )
   def index
     @users = User.all
   end
