@@ -15,26 +15,26 @@
   end
 end
 
-50.times do |num|
-  Reaction.seed do |s|
-    s.id = num + 50 # 50~99
-    s.user_id = 2 # 岩木
-    s.task_id = num
-  end
-end
-
-10.upto(49) do |num|
-  Reaction.seed do |s|
-    s.id = num + 100 # 100~139
-    s.user_id = 3 # 小野
-    s.task_id = num
-  end
-end
-
-30.upto(49) do |num|
-  Reaction.seed do |s|
-    s.id = num + 140 # 140~169
-    s.user_id = 4 # 若林
-    s.task_id = num
-  end
-end
+# 50.times do |num|
+#  Reaction.seed do |s|
+#    s.id = num + 50 # 50~99
+#    s.user_id = 2 # 岩木
+#    s.task_id = num
+#  end
+# end
+#
+# 10.upto(49) do |num|
+#  Reaction.seed do |s|
+#    s.id = num + 100 # 100~139
+#    s.user_id = 3 # 小野
+#    s.task_id = num
+#  end
+# end
+#
+# 30.upto(49) do |num|
+#  Reaction.seed do |s|
+#    s.id = num + 140 # 140~169
+#    s.user_id = 4 # 若林
+#    s.task_id = num
+#  end
+# end
