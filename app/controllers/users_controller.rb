@@ -4,6 +4,8 @@ class UsersController < ApplicationController
     index show edit name_edit edit_password upload
     update_name update_password destroy
   )
+  before_action :correct_user, only: %i(edit name_edit edit_password update update_name update_password destroy)
+
   def index
     @users = User.all
   end
@@ -110,5 +112,11 @@ class UsersController < ApplicationController
 
   def sub_user_params
     params.permit(:name, :password, :password_confirmation, :group_id, :default_group_id)
+  end
+
+  # 正しいユーザーかどうか確認
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
   end
 end
