@@ -37,6 +37,11 @@ module SessionsHelper
     session.delete(:group_id)
   end
 
+  # 渡されたユーザーがログイン済みユーザーであればtrueを返す
+  def current_user?(user)
+    user == current_user
+  end
+
   # 自分が所属するグループか？
   # def current_user_belongs_to?(group)
   #  current_user.groups.include?(group)
