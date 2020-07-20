@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     if @group.save
       @group.users << current_user
-      log_in(current_user)
+      group_in(current_user)
       flash[:success] = 'グループを作成しました'
       redirect_to group_path(@group)
     else

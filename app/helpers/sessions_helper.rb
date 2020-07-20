@@ -5,6 +5,11 @@ module SessionsHelper
     session[:user_id] = user.id
     if user.default_group_id
       group_in(Group.find(user.default_group_id))
+    elsif user.groups.present?
+      group_in(Group.find(user.groups.first.id))
+      if current_user.default_group_id.nil?
+        current_user.default_group_id = group
+      end
     end
   end
 
@@ -51,6 +56,9 @@ module SessionsHelper
   def group_in(group)
     if current_user.belongs_to?(group)
       session[:group_id] = group.id
+      if current_user.default_group_id.nil?
+        current_user.default_group_id = group.id
+      end
     else
       session.delete(:group_id)
     end
