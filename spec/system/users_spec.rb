@@ -16,6 +16,20 @@ describe 'session user spec', type: :system do
       login(1)
     end
 
+    it '所属するグループ名が表示される' do
+      User.find(1).groups.each do |group|
+        expect(page).to have_link group.name
+      end
+    end
+
+    it '所属するグループのユーザー名が表示される' do
+      User.find(1).groups.each do |group|
+        group.users.each do |user|
+          expect(page).to have_link user.name
+        end
+      end
+    end
+
     it 'ユーザー情報編集リンクが表示される' do
       expect(page).to have_link 'ユーザー情報編集'
     end
