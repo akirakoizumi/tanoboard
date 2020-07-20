@@ -18,6 +18,9 @@ header.sticky-top
           .nav-item= link_to current_group.name, current_group ,class: 'nav-link text-light'
         .nav-item= link_to "ID: #{current_user.id}", current_user ,class: 'nav-link text-light'
         .nav-item= link_to current_user.name, current_user ,class: 'nav-link text-light'
-        .nav-item= link_to current_user.email, current_user ,class: 'nav-link text-light'
+        -if current_user.email.present?
+          .nav-item= link_to current_user.email, current_user ,class: 'nav-link text-light'
+        -else
+          .nav-item= link_to 'サブユーザー', current_user ,class: 'nav-link text-light'
   - else
     .mb-3
