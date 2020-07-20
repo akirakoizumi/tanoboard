@@ -4,9 +4,12 @@ header.sticky-top
       .app-title.navbar#logo
         = link_to "Tanoboard", root_path, class: 'navbar-brand'
       ul.navbar-nav
-        - if logged_in?              
-          li.nav-item= link_to "グループ一覧", groups_path ,class: 'nav-link'
-          li.nav-item= link_to "グループ作成", new_group_path ,class: 'nav-link'
+        - if logged_in?
+          li.nav-item= link_to "ユーザー詳細", current_user ,class: 'nav-link'
+          -if current_group.present?
+            .nav-item= link_to "グループページへ", current_group ,class: 'nav-link'
+          -if current_user.admin
+            li.nav-item= link_to "グループ作成", new_group_path ,class: 'nav-link'
           li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
         - else
           li.nav-item= link_to '管理ユーザー登録', signup_path ,class: 'nav-link'
