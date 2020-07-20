@@ -5,7 +5,6 @@ header.sticky-top
         = link_to "Tanoboard", root_path, class: 'navbar-brand'
       ul.navbar-nav
         - if logged_in?              
-          li.nav-item= link_to "ユーザー一覧", users_path ,class: 'nav-link'
           li.nav-item= link_to "グループ一覧", groups_path ,class: 'nav-link'
           li.nav-item= link_to "グループ作成", new_group_path ,class: 'nav-link'
           li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'

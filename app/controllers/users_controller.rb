@@ -1,14 +1,10 @@
 class UsersController < ApplicationController
   # ログインしているユーザーか確認
   before_action :logged_in_user, only: %i(
-    index show edit name_edit edit_password upload
+    show edit name_edit edit_password upload
     update_name update_password destroy
   )
   before_action :correct_user, only: %i(edit name_edit edit_password update update_name update_password destroy)
-
-  def index
-    @users = User.all
-  end
 
   def show
     @user = User.find(params[:id])
