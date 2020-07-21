@@ -4,7 +4,11 @@ class UsersController < ApplicationController
     show edit name_edit edit_password upload
     update_name update_password destroy
   )
-  before_action :correct_user, only: %i(edit name_edit edit_password update update_name update_password destroy)
+  before_action :correct_user, only: %i(
+    show new_sub create create_sub edit name_edit edit_password
+    update update_name update_password destroy
+  )
+  before_action :require_admin, only: %i(new_sub create_sub edit update)
 
   def show
     @user = User.find(params[:id])
@@ -25,7 +29,7 @@ class UsersController < ApplicationController
     if @user.save!
       log_in(@user)
       flash[:success] = "ユーザー「#{@user.name}」を登録しました"
-      redirect_to user_url(@user)
+      redirect_back_or user_url(@user)
     else
       render :new
     end

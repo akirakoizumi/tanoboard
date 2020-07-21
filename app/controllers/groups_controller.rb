@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :correct_user, only: %i(edit name_edit edit_password update update_name update_password destroy)
+  before_action :logged_in_user
+  before_action :require_admin, only: %i(new create update edit update)
 
   PER = 12
 
@@ -20,7 +21,7 @@ class GroupsController < ApplicationController
       @group.users << current_user
       group_in(current_user)
       flash[:success] = 'グループを作成しました'
-      redirect_to group_path(@group)
+      redirect_back_or group_path(@group)
     else
       render :new
     end
@@ -51,6 +52,13 @@ class GroupsController < ApplicationController
         flash.discard
       end
     end
+  end
+
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    flash[:success] = "グループ「#{@group.name}」を削除しました"
+    redirect_to root_url
   end
 
   private

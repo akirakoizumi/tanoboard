@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   # ログイン済みユーザーかどうか確認
   def logged_in_user
     return if logged_in?
-
     store_location
     flash[:danger] = 'ログインしてください'
     redirect_to login_url
@@ -32,5 +31,10 @@ class ApplicationController < ActionController::Base
       @current_group ||= Group.find_by(id: current_user.default_group_id)
       session[:group_id] = current_user.default_group_id
     end
+  end
+
+  # 管理ユーザーかどうか確認
+  def require_admin
+    redirect_to root_url unless current_user.admin?
   end
 end
