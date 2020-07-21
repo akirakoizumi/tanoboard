@@ -1,9 +1,7 @@
 class GroupsController < ApplicationController
-  PER = 12
+  before_action :correct_user, only: %i(edit name_edit edit_password update update_name update_password destroy)
 
-  def index
-    @groups = Group.all
-  end
+  PER = 12
 
   def show
     @group = Group.find(params[:id])

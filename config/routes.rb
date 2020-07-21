@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :groups do
+  resources :groups, only: [:show, :new, :create, :edit, :update, :destroy] do
     member do
       post :set_defaultuser
     end
