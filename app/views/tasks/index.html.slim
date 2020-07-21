@@ -6,9 +6,3 @@ h3.mb-3
 
 = link_to '管理ユーザー登録', signup_path , class:'btn btn-primary btn-lg mr-4'
 = link_to 'ログイン', login_path , class:'btn btn-primary btn-lg'
-
-
-ul.groups
-  - Group.all.each do |group|
-    li
-      = link_to group.name, group
