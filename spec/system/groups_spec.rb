@@ -24,17 +24,31 @@ describe 'groups system spec', type: :system do
       expect(current_path).to eq group_path(Group.find_by(name: 'テスト用グループ'))
     end
 
-    it 'グループ名が表示される' do
-      visit group_path(1)
-      User.find(1).groups.each do |group|
-        expect(page.body).to include group.name
+    describe 'グループ詳細画面' do
+      before do
+        visit group_path(1)
       end
-    end
 
-    it 'グループ説明が表示される' do
-      visit group_path(1)
-      User.find(1).groups.each do |group|
-        expect(page.body).to include group.description
+      it 'グループ名が表示される' do
+        User.find(1).groups.each do |group|
+          expect(page.body).to include group.name
+        end
+      end
+
+      it 'グループ説明が表示される' do
+        User.find(1).groups.each do |group|
+          expect(page.body).to include group.description
+        end
+      end
+
+      it 'サブメンバー作成画面にアクセスできる' do
+        click_link('グループメンバーを作成する')
+        expect(current_path).to eq new_sub_user_path(1)
+      end
+
+      it 'グループ情報編集画面にアクセスできる' do
+        click_link('グループ情報編集')
+        expect(current_path).to eq edit_group_path(1)
       end
     end
   end
