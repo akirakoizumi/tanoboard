@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resource :reactions, only: [:create, :destroy]
   end
 
-  resources :users, only: [:show, :ner, :create, :edit, :update, :destroy] do
+  resources :users, only: [:show, :new, :create, :edit, :update, :destroy] do
     member do
       get :name_edit
       patch :update_name
