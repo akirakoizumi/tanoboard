@@ -1,0 +1,29 @@
+header.sticky-top
+  nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+    .container
+      .app-title.navbar#logo
+        = link_to "Tanoboard", root_path, class: 'navbar-brand'
+      ul.navbar-nav
+        - if logged_in?
+          li.nav-item= link_to "ユーザー詳細", current_user ,class: 'nav-link'
+          -if current_group.present?
+            .nav-item= link_to "グループページへ", current_group ,class: 'nav-link'
+          -if current_user.admin
+            li.nav-item= link_to "グループ作成", new_group_path ,class: 'nav-link'
+          li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+        - else
+          li.nav-item= link_to '管理ユーザー登録', signup_path ,class: 'nav-link'
+          li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+  - if logged_in?
+    nav.navbar.navbar-expand-md.bg-teal.mb-3
+      .container.justify-content-end.text-light
+        -if current_group.present?
+          .nav-item= link_to current_group.name, current_group ,class: 'nav-link text-light'
+        .nav-item= link_to "ID: #{current_user.id}", current_user ,class: 'nav-link text-light'
+        .nav-item= link_to current_user.name, current_user ,class: 'nav-link text-light'
+        -if current_user.email.present?
+          .nav-item= link_to current_user.email, current_user ,class: 'nav-link text-light'
+        -else
+          .nav-item= link_to 'サブユーザー', current_user ,class: 'nav-link text-light'
+  - else
+    .mb-3

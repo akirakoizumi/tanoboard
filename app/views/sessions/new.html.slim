@@ -1,0 +1,21 @@
+- provide(:title, 'ログイン')
+
+.container.mb-3
+  .row.align-items-center
+    .sidenav.col-md-4.col-sm-12
+      .sidenav-text.text-center
+        h1 ログイン
+        p 空欄に記入してください
+    .main.col-md-6.col-sm-12.mt-3
+      .login-form
+        = form_with scope: :session, local: true do |f|
+          .form-group
+            = f.label :id_or_email, 'IDまたはメールアドレス'
+            = f.text_field :id_or_email, class: 'form-control', id: 'session_id_or_email'
+          .form-group
+            = f.label :password, 'パスワード'
+            = f.password_field :password, class: 'form-control', id: 'session_password'
+          .form-check
+            = f.check_box :remember_me, class: 'form-check-input', id: 'session_check_input'
+            = f.label :remember_me, 'ログインを記憶する', class: 'form-check-label mb-3'
+          = f.submit 'ログインする', class: 'btn btn-primary'

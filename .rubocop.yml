@@ -11,5 +11,5 @@ AllCops:
     - 'config/spring.rb'
     - 'lib/tasks/*'
     - 'vendor/**/*'
-LineLength:
-    Max: 120
+Metrics/LineLength:
+  Max: 120

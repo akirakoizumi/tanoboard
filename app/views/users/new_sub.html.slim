@@ -1,0 +1,13 @@
+- provide(:title, 'サブユーザー作成')
+
+.container.mb-3
+  .row.align-items-center
+    .sidenav.col-md-5.col-sm-12
+      .sidenav-text.text-center
+        h1 =@group.name
+        h2 サブユーザー作成
+        p 空欄に記入してください
+        p メールアドレスは不要です
+    .main.col-md-7.col-sm-12.mt-3
+      .login-form
+        = render partial: 'sub_form', locals: { user: @user } 

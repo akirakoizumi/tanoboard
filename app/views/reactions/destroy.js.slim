@@ -1,0 +1,3 @@
+| $('#task_count_id_#{@task.id}').html("#{j(render partial: 'tasks/task_count.html', locals: {task: @task})}");
+| $('#task_confirmation_id_#{@task.id}').html("#{j(render partial: 'tasks/task_confirmation.html', locals: {task: @task})}");
+| $('#reaction_users').html("#{j(render partial: 'tasks/reaction_user.html', locals: {users: @users})}");

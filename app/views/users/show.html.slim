@@ -1,0 +1,46 @@
+- provide(:title, 'ユーザーの詳細')
+
+.container.mb-3
+  -if @user.groups.empty?
+    p グループに所属していません
+    = link_to '新しいグループを作成する',new_group_path, class: "btn btn-primary mr-3"
+  -else
+    ul.groups
+    - @user.groups.each do |group|
+        h4.mt-3= link_to group.name, group ,class: 'text-body'
+        - group.users.each do |user|
+          li
+            = link_to user.name, user
+
+.border-bottom.border-dark
+
+.container.mb-3
+  .row.align-items-center
+    .sidenav.col-md-4.col-sm-12
+      .sidenav-text.text-center
+        h1 ユーザー詳細
+        p
+    .main.col-md-6.col-sm-12.mt-3
+      .login-form
+        table.table.table-hover
+          tbody
+            tr
+              th style="width:15%" = User.human_attribute_name(:id)
+              td style="width:85%" = @user.id
+            tr
+              th= User.human_attribute_name(:name)
+              td= @user.name
+            tr
+              th= User.human_attribute_name(:email)
+              td= @user.email
+            tr
+              th= User.human_attribute_name(:admin)
+              td= @user.admin? ? 'あり' : 'なし'
+        - if @user.admin?
+          = link_to "ユーザー情報編集", edit_user_path, class: "btn btn-primary mr-3"
+        - else
+          = link_to "名前変更", name_edit_user_path, class: "btn btn-primary mr-3"
+        = link_to "パスワード変更", edit_password_user_path, class: "btn btn-primary mr-3"
+        = link_to "ログアウト", logout_path, method: :delete, class: "btn btn-primary mr-3"
+        = link_to '削除', @user, method: :delete, data: {confirm: "ユーザー「#{@user.name}」を削除します。よろしいですか？"},
+          class: 'btn btn-danger'

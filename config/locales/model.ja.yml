@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      group: グループ
+      task: タスク
+    attributes:
+      user:
+        id: ID
+        name: 名前
+        email: email
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        admin: 管理権
+        created_at: 登録日時
+        updated_at: 更新日時
+      group:
+        id: グループID
+        name: 名前
+        description: グループ説明
+      task:
+        id: ID
+        content: タスク内容
+        created_at: 登録日時
+        update_at: 更新日時

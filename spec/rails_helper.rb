@@ -66,4 +66,9 @@ RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by :rack_test
   end
+
+  # Seed_fu
+  config.before(:suite) do
+    SeedFu.seed
+  end
 end

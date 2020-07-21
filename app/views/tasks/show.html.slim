@@ -1,0 +1,26 @@
+.border-bottom.border-dark
+
+.container.mb-3
+  .row.align-items-center
+    .sidenav.col-md-4.col-sm-12
+      .sidenav-text.text-center
+        h1.mt-4 タスク詳細
+    .main.col-md-8.col-sm-12.mt-3
+      h2 =@task.content
+  .row.mt-4
+    .sidenav.col-md-4.col-sm-12
+    .main.col-md-8.col-sm-12.mt-3
+      span 了解数 
+      span.mr-3 id="task_count_id_#{@task.id}"
+        =render partial: 'tasks/task_count', locals: { task: @task}
+
+      span.mr-3 id="task_confirmation_id_#{@task.id}"
+        = render partial: 'tasks/task_confirmation', locals: { task: @task}
+
+      .float-right
+        = link_to '投稿を削除する', @task, method: :delete, remote: true, data: { confirm: "タスクを削除します。よろしいですか？"},
+                  class: 'btn btn-outline-danger delete btn-sm text-right'
+      h3.mt-3 了解済みメンバー一覧
+      #reaction_users
+        =render partial: 'tasks/reaction_user', locals: { users: @users}
+        br.mb-3

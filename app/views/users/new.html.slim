@@ -1,0 +1,11 @@
+- provide(:title, '管理ユーザー作成')
+
+.container.mb-3
+  .row.align-items-center
+    .sidenav.col-md-4.col-sm-12
+      .sidenav-text.text-center
+        h1 新規登録
+        p 空欄に記入してください
+    .main.col-md-6.col-sm-12.mt-3
+      .login-form
+        = render partial: 'form', locals: { user: @user } 
