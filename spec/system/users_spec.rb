@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'session user spec', type: :system do
+describe 'user system spec', type: :system do
   def login(id)
     visit login_path
     login_user = User.find(id)
