@@ -29,7 +29,7 @@ end
 
 User.seed do |s|
   s.id = 3
-  s.name = '小野'
+  s.name = 'サンプル小野'
   s.admin = false
   s.password = 'password'
   s.password_confirmation = 'password'

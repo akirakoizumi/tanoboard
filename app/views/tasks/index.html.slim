@@ -3,6 +3,10 @@ h3.mb-3
   | Tanoboardは同じ職場で働く従業員同士のコミュニケーションを
   br
   | 快適に行うためのサービスです。
+.mb-4
+  = link_to '管理ユーザー登録', signup_path , class:'btn btn-primary btn-lg mr-4'
+  = link_to 'ログイン', login_path , class:'btn btn-primary btn-lg mr-4'
+  = link_to "ゲストユーザーでログイン", {controller: 'sessions', action: 'create', params: { session: { id_or_email: 3, password: 'password', remember_me: '0' } }},
+    method: :post, class:'btn btn-indigo btn-lg'
+  /post login_path, params: { session: { id_or_email: id, password: 'password', remember_me: '0' } }
 
-= link_to '管理ユーザー登録', signup_path , class:'btn btn-primary btn-lg mr-4'
-= link_to 'ログイン', login_path , class:'btn btn-primary btn-lg'
