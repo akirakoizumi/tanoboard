@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'tasks#index'
-  resources :tasks, only: [:index, :show, :create, :destroy] do
+  root 'static_pages#home'
+  # root to: 'tasks#index'
+  # resources :tasks, only: [:index, :show, :create, :destroy] do
+  resources :tasks, only: [:show, :create, :destroy] do
     resource :reactions, only: [:create, :destroy]
   end
 

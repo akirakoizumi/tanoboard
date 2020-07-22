@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
-  def index
-  end
-
+  before_action :logged_in_user
+  before_action :correct_user
   def show
     @task = Task.find(params[:id])
     @users = @task.all_reaction_user
@@ -29,5 +28,11 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:content, :user_id, :group_id)
+  end
+
+  # 正しいユーザーかどうか確認
+  def correct_user
+    @task = Task.find(params[:id])
+    redirect_to(current_user) unless @task.user == current_user
   end
 end
