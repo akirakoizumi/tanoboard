@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user, only: %i(create destroy)
+  before_action :correct_user, only: %i(destroy)
   def show
     @task = Task.find(params[:id])
     @users = @task.all_reaction_user
