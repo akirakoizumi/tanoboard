@@ -14,11 +14,11 @@
   = paginate @tasks
   = page_entries_info @tasks
 
-  = render 'task_list', task: @tasks
+  = render 'tasks/task_list', task: @tasks
 
   .border-bottom.border-dark.mb-3
 
-    = render 'task_form', task: @task
+    = render 'tasks/task_form', task: @task
 
   .border-bottom.border-dark.my-3
   .container.mb-3
