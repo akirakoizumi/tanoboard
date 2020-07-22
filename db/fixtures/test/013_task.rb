@@ -26,9 +26,9 @@ end
 #  end
 # end
 
-# Task.seed do |s|
-#  s.id = 81
-#  s.content = "濱川店長へレモンの買い出しをお願いします"
-#  s.user_id = 3 # サンプル小野
-#  s.group_id = 1 # 長崎店
-# end
+Task.seed do |s|
+  s.id = 81
+  s.content = "濱川店長へレモンの買い出しをお願いします"
+  s.user_id = 3 # サンプル小野
+  s.group_id = 1 # 長崎店
+end
