@@ -5,8 +5,11 @@ class UsersController < ApplicationController
     update_name update_password destroy
   )
   before_action :correct_user, only: %i(
-    show new_sub create create_sub edit name_edit edit_password
+    new_sub create create_sub edit name_edit edit_password
     update update_name update_password destroy
+  )
+  before_action :correct_group, only: %i(
+    show
   )
   before_action :require_admin, only: %i(new_sub create_sub edit update)
 
@@ -112,6 +115,12 @@ class UsersController < ApplicationController
 
   def sub_user_params
     params.permit(:name, :password, :password_confirmation, :group_id, :default_group_id)
+  end
+
+  # 同じグループのユーザーか確認
+  def correct_group
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless @user.groups.include?(current_group)
   end
 
   # 正しいユーザーかどうか確認
